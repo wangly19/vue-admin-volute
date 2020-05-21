@@ -1,0 +1,28 @@
+@import './tools.scss';
+
+// 描述颜色
+$primary-color: #5673FF;
+$warning-color: #FFAA2E;
+$success-color: #05CAAE;
+$error-color: #FF8282;
+$light-color: #FFFFFF;
+$bg-color: #eff3f5;
+$box-shadow-base: 0 2px 8px rgba(0, 0, 0, 0.15);
+
+// 文字颜色
+$text-color: #303753;
+$label-color: #767E91;
+$sub-color: #B3B9C7;
+
+// 辅助颜色
+$border-color: #e8e8e8;
+
+// 字号
+$font-min: 14px;
+$font-default: 16px;
+$font-large: 20px;
+
+// 圆角
+@mixin radius() {
+  border-radius: 4px;
+}
