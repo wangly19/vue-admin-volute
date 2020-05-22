@@ -26,3 +26,8 @@ $font-large: 20px;
 @mixin radius() {
   border-radius: 4px;
 }
+
+@mixin viewGlobalStyle {
+  padding: 15px;
+  height: 100%;
+}

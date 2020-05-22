@@ -1,14 +1,10 @@
-import Layout from '@/layout'
 export default {
-  path: '/',
-  name: '/',
-  component: Layout,
-  redirect: '/home',
-  children: [
-    {
-      path: '/home',
-      name: 'home',
-      component: resolve => require(['@/views/Home'], resolve)
-    }
-  ]
+  path: '/login',
+  name: '/login',
+  meta: {
+    title: '登录',
+    icon: '',
+    isShow: false
+  },
+  component: resolve => require(['@/views/Login'], resolve)
 }

@@ -1,17 +1,29 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-
-const routes = []
-const routerFiles = require.context('./module', false, /\.js$/)
-routerFiles.keys().forEach(fileName => {
-  console.log(routerFiles(fileName).default)
-  routes.push(routerFiles(fileName).default)
-})
-
 Vue.use(VueRouter)
 
+/**
+ * 路由需要鉴定权限，
+ * - async名称的需要鉴权
+ * - 反之不需要验证。
+ */
+export const rolesRoutes = []
+export const defaultRouter = []
+const routerFiles = require.context('./module', false, /\.js$/)
+routerFiles.keys().forEach(fileName => {
+  console.log(fileName, fileName.includes('async'))
+  if (fileName.includes('async')) {
+    routerFiles(fileName).default && rolesRoutes.push(routerFiles(fileName).default)
+  } else {
+    routerFiles(fileName).default && defaultRouter.push(routerFiles(fileName).default)
+  }
+})
+
+console.log(defaultRouter)
+
 const router = new VueRouter({
-  routes
+  mode: 'history',
+  routes: defaultRouter
 })
 
 export default router

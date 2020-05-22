@@ -79,9 +79,8 @@ export default {
     margin-right: 40px;
     padding: 0 $font-large;
     height: inherit;
-    background: $bg-color;
     border-radius: 10px;
-    backdrop-filter: saturate(200%) blur(20px);
+    background: $bg-color;
     @include flex($justify: space-between);
     .zoom-icon {
       flex: 0 0 300px;
@@ -130,6 +129,7 @@ export default {
             width: 30px;
             height: 3px;
             background: $primary-color;
+            @include radius();
           }
         }
     }

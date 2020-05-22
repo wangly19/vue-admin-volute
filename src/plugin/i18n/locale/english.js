@@ -8,3 +8,15 @@ export const login = {
   loginButton: 'Login Immediately',
   forget: 'forget-me-not'
 }
+
+export const user = {
+  title: 'UserInfo',
+  info: [
+    { key: 'name', value: '昵称' },
+    { key: 'status', value: '状态' },
+    { key: 'name', value: '昵称' },
+    { key: 'name', value: '昵称' },
+    { key: 'name', value: '昵称' },
+    { key: 'name', value: '昵称' }
+  ]
+}

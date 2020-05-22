@@ -4,6 +4,7 @@ import router from './router'
 import store from './store'
 import '@/plugin'
 import i18n from '@/plugin/i18n'
+import '@/router/intercept'
 
 Vue.config.productionTip = false
 
