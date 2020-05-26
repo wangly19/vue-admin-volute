@@ -77,6 +77,8 @@ export default {
   components: {
     LoginHeader
   },
+  created () {
+  },
   beforeCreate () {
     this.loginData = this.$form.createForm(this, { name: 'login_form' })
   }

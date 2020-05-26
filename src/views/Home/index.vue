@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    {{test}}
+    1111
   </div>
 </template>
 

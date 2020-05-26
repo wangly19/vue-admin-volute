@@ -1,4 +1,5 @@
-import { defaultRouter, rolesRoutes } from '@/router'
+import defaultRouter from '@/router/module'
+import rolesRoutes from '@/router/asyncRouter'
 const state = {
   currentRoutes: [],
   addRoutes: []
@@ -15,6 +16,7 @@ const actions = {
   GenerateRoutes ({ commit }, roles) {
     return new Promise((resolve) => {
       let sendRoutes
+      console.log(roles)
       if (roles.includes('root')) {
         // 当前为root权限，自动加载所有路由
         sendRoutes = rolesRoutes
@@ -22,6 +24,7 @@ const actions = {
         sendRoutes = filterRoutes(rolesRoutes, roles)
       }
       commit('setRoutesList', sendRoutes)
+      console.log(sendRoutes, 'send')
       resolve(sendRoutes)
     })
   }
@@ -35,6 +38,7 @@ const actions = {
 function hasRoles (route, roles) {
   if (route.meta && route.meta.roles) {
     // 如果meta中存在路由权限列表
+    console.log(roles.some(role => route.meta.roles.includes(role)))
     return roles.some(role => route.meta.roles.includes(role))
   }
   return true
@@ -50,9 +54,11 @@ function filterRoutes (routes, roles) {
   routes.forEach(item => {
     const temp = { ...item }
     if (hasRoles(temp, roles)) {
-      if (temp.children) filterRoutes(temp.children, roles)
+      if (temp.children) {
+        filterRoutes(temp.children, roles)
+      }
+      result.push(temp)
     }
-    result.push(temp)
   })
   return result
 }

@@ -6,7 +6,7 @@ export default {
     title: '用户',
     icon: '',
     isShow: true,
-    roles: ['admin']
+    roles: ['xxxx']
   },
   component: Layout,
   redirect: '/user/info',
@@ -18,7 +18,7 @@ export default {
         title: '个人信息',
         icon: '',
         isShow: true,
-        roles: ['admin']
+        roles: ['xxxxxx']
       },
       component: resolve => require(['@/views/User/UserInfo.vue'], resolve)
     }
