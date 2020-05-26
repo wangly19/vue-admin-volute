@@ -9,22 +9,26 @@
           <a-icon type="fullscreen-exit" class="tagger-zoom" @click="zoomToolBar" />
         </div>
         <ul class="footer-menu">
-          <li class="footer-item" :class="[item === 1 && 'item-active']" v-for="item in 10" :key="item">
-            <a-dropdown placement="topCenter">
-              <svg-icon name="home" className="tool-icon" />
-              <a-menu slot="overlay">
-                <a-menu-item>
-                  个人信息
-                </a-menu-item>
-                <a-menu-item>
-                  个人信息
-                </a-menu-item>
-                <a-menu-item>
-                  个人信息
-                </a-menu-item>
-              </a-menu>
-            </a-dropdown>
-          </li>
+          <template v-for="(item, index) in currentRoutes">
+            <li class="footer-item" :class="[$route.path === item.children[0].path && 'item-active']"
+              v-if="item.meta.isShow"
+              @click="switchRouter(item.children[0], index)" :key="item.name">
+              <a-dropdown placement="topCenter">
+                <svg-icon name="home" className="tool-icon" />
+                <a-menu slot="overlay">
+                  <a-menu-item>
+                    {{item.meta.title}}
+                  </a-menu-item>
+                  <a-menu-item>
+                    个人信息
+                  </a-menu-item>
+                  <a-menu-item>
+                    个人信息
+                  </a-menu-item>
+                </a-menu>
+              </a-dropdown>
+            </li>
+          </template>
         </ul>
         <div class="user-info">
           <a-dropdown placement="topCenter">
@@ -42,12 +46,23 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
   name: 'LayoutFooter',
   data: () => ({
-    isZoom: false
+    isZoom: false,
+    macIndex: 0
   }),
+  computed: {
+    ...mapGetters(['currentRoutes'])
+  },
   methods: {
+    switchRouter (item, index) {
+      this.macIndex = index
+      console.log(item)
+      // this.$store.commit('pushKeepList', item)
+      this.$router.push({ path: item.path })
+    },
     zoomToolBar () {
       this.isZoom = !this.isZoom
     }

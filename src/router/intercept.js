@@ -1,38 +1,26 @@
 import router from './index'
-// import Store from '@/store'
-// import async from '@/router/asyncRouter'
-import Layout from '@/layout'
-
+import Store from '@/store'
 router.beforeEach(async (to, from, next) => {
   if (to.path === '/login') {
     next()
   } else {
-    // const list = await Store.dispatch('GenerateRoutes', ['admin'])
-    router.addRoutes([{
-      path: '/',
-      name: '/',
-      meta: {
-        title: '首页',
-        icon: '',
-        isShow: true,
-        roles: ['admin']
-      },
-      component: Layout,
-      redirect: '/dash',
-      children: [
-        {
-          path: 'dash',
-          name: 'dash',
-          meta: {
-            title: '首页',
-            icon: '',
-            isShow: true,
-            roles: ['admin']
-          },
-          component: resolve => require(['@/views/Home'], resolve)
-        }
-      ]
-    }])
-    next({ ...to, replace: true })
+    // 不是去登录界面, 获取路由
+    if (Store.getters.roles.length === 0) {
+      try {
+        Store.dispatch('getInfo')
+        const list = await Store.dispatch('GenerateRoutes', ['root'])
+        router.addRoutes(list)
+        next({ ...to, replace: true })
+      } catch (error) {
+        console.log(error)
+        next('/login')
+      }
+    } else {
+      next()
+    }
   }
+})
+
+router.afterEach((to, from) => {
+  Store.commit('pushKeepList', to)
 })

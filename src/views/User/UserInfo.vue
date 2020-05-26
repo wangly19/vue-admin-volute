@@ -37,6 +37,7 @@
 
 <script>
 export default {
+  name: 'userinfo',
   created () {
     console.log('userinfo')
   }

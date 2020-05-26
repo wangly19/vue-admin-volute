@@ -1,13 +1,14 @@
 <template>
   <div class="layout-container">
-    <a-tabs type="card" @change="callback" class="router-view" :animated="true"
-    @tabClick="tabClickPath"
+    <a-tabs type="card"
+    :activeKey="$route.path"
+    class="router-view" :animated="true"
+    @edit="changeTabView"
     size="small"
+    @change="changeViewPath"
     :tabBarStyle="tabBar">
-      <a-tab-pane :key="item.path" :tab="item.name" v-for="item in keepList">
-        <keep-alive :include="keepList">
-          <router-view />
-        </keep-alive>
+      <a-tab-pane :key="item.path" :tab="item.meta.title" v-for="item in keepList">
+        <router-view></router-view>
       </a-tab-pane>
     </a-tabs>
     <layout-footer class="layout-footer" />
@@ -23,20 +24,30 @@ export default {
     routerActive: []
   }),
   computed: {
-    ...mapGetters(['keepList']),
+    ...mapGetters(['keepList', 'currentRoutes']),
     tabBar () {
       return {
         marginBottom: 0
       }
+    },
+    filterRouter () {
+      const path = []
+      this.keepList.forEach(route => {
+        path.push(route.item.path)
+      })
+      return path
     }
   },
   methods: {
-    callback (key) {
-      console.log('切换了')
-      this.routerActive = [key]
+    /**
+     * 新增tab
+     */
+    changeTabView (targetKey, action) {
+      console.log(targetKey, action)
     },
-    tabClickPath (a) {
-      this.$router.push({ path: a })
+    changeViewPath (key) {
+      console.log(key)
+      this.$router.replace({ path: key })
     }
   },
   components: {

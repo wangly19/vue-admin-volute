@@ -6,19 +6,21 @@ export default {
     title: '用户',
     icon: '',
     isShow: true,
-    roles: ['xxxx']
+    roles: ['xxxx'],
+    cache: true
   },
   component: Layout,
   redirect: '/user/info',
   children: [
     {
-      path: '/info',
+      path: '/user/info',
       name: 'userinfo',
       meta: {
         title: '个人信息',
         icon: '',
         isShow: true,
-        roles: ['xxxxxx']
+        roles: ['xxxxxx'],
+        cache: true
       },
       component: resolve => require(['@/views/User/UserInfo.vue'], resolve)
     }

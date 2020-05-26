@@ -6,7 +6,8 @@ export default {
     title: '首页',
     icon: '',
     isShow: true,
-    roles: ['admin']
+    roles: ['admin'],
+    cache: true
   },
   component: Layout,
   redirect: '/dash',
@@ -18,7 +19,8 @@ export default {
         title: '首页',
         icon: '',
         isShow: true,
-        roles: ['admin']
+        roles: ['admin'],
+        cache: true
       },
       component: resolve => require(['@/views/Home'], resolve)
     }

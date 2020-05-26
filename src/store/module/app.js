@@ -18,9 +18,8 @@ const mutations = {
   setZoom (state, bool) {
     state.isZoom = bool
   },
-  pushKeepList (state, router) {
-    const findResult = state.keepList.find(el => el.name === router.name)
-    findResult || state.keepList.push(router)
+  pushKeepList (state, config) {
+    state.keepList.find(el => el.path === config.path) || state.keepList.push(config)
   }
 }
 
