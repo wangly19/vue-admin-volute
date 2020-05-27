@@ -6,6 +6,7 @@
         <span @click="readyMap(key, value)">{{value.name}}</span>
       </a-breadcrumb-item>
     </a-breadcrumb>
+    <!-- map -->
     <div id="map" style="width: 500px;height: 500px;"></div>
   </div>
 </template>
@@ -41,7 +42,7 @@ export default {
       this.renderMap('江西省', mapName)
     },
     // 绘制市级别地图
-    readCity (name, value) {
+    rendCity (name, value) {
       const fileName = value
       const cityData = require(`@/plugin/map/city/${fileName}.json`)
       echarts.registerMap(name, cityData)
@@ -93,7 +94,7 @@ export default {
           this.clearHashMap()
           break
         case 2:
-          this.readCity(name, value)
+          this.rendCity(name, value)
           this.setHashMap(key, name, value)
           break
         default:
@@ -109,7 +110,7 @@ export default {
         const { name, value } = $mod.data
         switch ($mod.data.zoom) {
           case 1:
-            this.readCity(name, value)
+            this.rendCity(name, value)
             this.setHashMap($mod.data.zoom + 1, name, value)
             break
           case 2: {
@@ -146,7 +147,7 @@ export default {
             normal: {
               show: true,
               textStyle: {
-                color: '#2a8ab3',
+                color: '#303753',
                 fontSize: 13
               }
             },
@@ -161,13 +162,13 @@ export default {
           data: cityNameList,
           itemStyle: {
             normal: {
-              areaColor: '#59b0da', // 地图颜色
+              areaColor: 'rgb(78, 163, 151)',
               borderWidth: 2,
-              borderColor: '#3f95c5',
+              borderColor: 'rgb(34, 195, 170)',
               label: {
                 show: true,
                 textStyle: {
-                  color: '#2a8ab3',
+                  color: 'rgb(0, 152, 217)',
                   fontSize: 12
                 }
               }
