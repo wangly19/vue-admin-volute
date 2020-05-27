@@ -14,7 +14,7 @@
               v-if="item.meta.isShow"
               @click="switchRouter(item.children[0], index)" :key="item.name">
               <a-dropdown placement="topCenter">
-                <svg-icon name="home" className="tool-icon" />
+                <svg-icon :name="item.meta.icon" className="tool-icon" />
                 <a-menu slot="overlay">
                   <a-menu-item>
                     {{item.meta.title}}
@@ -54,13 +54,14 @@ export default {
     macIndex: 0
   }),
   computed: {
-    ...mapGetters(['currentRoutes'])
+    ...mapGetters(['keepList', 'currentRoutes'])
   },
   methods: {
     switchRouter (item, index) {
       this.macIndex = index
       console.log(item)
       // this.$store.commit('pushKeepList', item)
+      console.log(item.path)
       this.$router.push({ path: item.path })
     },
     zoomToolBar () {

@@ -4,7 +4,7 @@ export default {
   name: '/',
   meta: {
     title: '首页',
-    icon: '',
+    icon: 'home',
     isShow: true,
     roles: ['admin'],
     cache: true
@@ -13,7 +13,7 @@ export default {
   redirect: '/dash',
   children: [
     {
-      path: 'dash',
+      path: '/dash',
       name: 'dash',
       meta: {
         title: '首页',

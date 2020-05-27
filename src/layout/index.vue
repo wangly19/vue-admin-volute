@@ -8,7 +8,9 @@
     @change="changeViewPath"
     :tabBarStyle="tabBar">
       <a-tab-pane :key="item.path" :tab="item.meta.title" v-for="item in keepList">
-        <router-view></router-view>
+        <keep-alive>
+          <router-view></router-view>
+        </keep-alive>
       </a-tab-pane>
     </a-tabs>
     <layout-footer class="layout-footer" />

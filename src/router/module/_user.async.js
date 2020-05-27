@@ -4,7 +4,7 @@ export default {
   name: 'user',
   meta: {
     title: '用户',
-    icon: '',
+    icon: 'user',
     isShow: true,
     roles: ['xxxx'],
     cache: true
