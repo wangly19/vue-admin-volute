@@ -72,5 +72,20 @@ module.exports = {
         prependData: `@import "~@/assets/scss/reset.scss";`
       }
     }
+  },
+  configureWebpack: {
+    resolve: { extensions: [".ts", ".tsx", ".js", ".json"] },    
+    module: {
+      rules: [
+        {
+          test: /\.tsx?$/,
+          loader: 'ts-loader',
+          exclude: /node_modules/,
+          options: {
+            appendTsSuffixTo: [/\.vue$/]
+          }    
+        }        
+      ]    
+    }
   }
 }

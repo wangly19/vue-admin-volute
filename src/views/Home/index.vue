@@ -12,7 +12,8 @@
 </template>
 
 <script>
-import JiangxiMap from '../../plugin/map/province/jiangxi.json'
+import JiangxiMap from '@/plugin/map/province/jiangxi.json'
+import Cache from '@/tools/test.ts'
 import echarts from 'echarts'
 const option = {
   tooltip: {
@@ -117,6 +118,7 @@ export default {
             const oneMap = {
               type: 'FeatureCollection',
               features: [$mod.data.data],
+              value: null,
               parent: value,
               zoom: 3
             }
@@ -190,6 +192,7 @@ export default {
     }
   },
   mounted () {
+    Cache.get()
     this.$nextTick(() => {
       this.cityMap = echarts.init(document.getElementById('map'))
       this.registerMap()
