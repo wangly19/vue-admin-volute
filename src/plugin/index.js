@@ -3,6 +3,6 @@
  * - flexible
  * - ant-ui
  */
-import './axios'
+// import './axios'
 import './ant-ui'
 import './svg-icon'

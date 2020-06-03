@@ -20,3 +20,7 @@ export const user = {
     { key: 'name', value: '昵称' }
   ]
 }
+
+export const error = {
+  info: '对不起，您访问的页面不存在。'
+}

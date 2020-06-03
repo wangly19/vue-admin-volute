@@ -1,18 +1,8 @@
 <template>
   <div class="layout-container">
-    <a-tabs type="card"
-    :activeKey="$route.path"
-    class="router-view" :animated="true"
-    @edit="changeTabView"
-    size="small"
-    @change="changeViewPath"
-    :tabBarStyle="tabBar">
-      <a-tab-pane :key="item.path" :tab="item.meta.title" v-for="item in keepList">
-        <keep-alive>
-          <router-view></router-view>
-        </keep-alive>
-      </a-tab-pane>
-    </a-tabs>
+    <div class="route-view">
+      <router-view></router-view>
+    </div>
     <layout-footer class="layout-footer" />
   </div>
 </template>

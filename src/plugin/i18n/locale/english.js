@@ -20,3 +20,7 @@ export const user = {
     { key: 'name', value: '昵称' }
   ]
 }
+
+export const error = {
+  info: 'Sorry, the page you visited does not exist.'
+}
