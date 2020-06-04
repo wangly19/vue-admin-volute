@@ -1,4 +1,5 @@
 import Layout from '@/layout'
+import Home from '@/views/Home'
 export default {
   path: '/',
   name: '/',
@@ -22,7 +23,7 @@ export default {
         roles: ['admin'],
         cache: true
       },
-      component: resolve => require(['@/views/Home'], resolve)
+      component: Home
     }
   ]
 }

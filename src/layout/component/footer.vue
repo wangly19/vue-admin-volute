@@ -90,6 +90,7 @@ export default {
   line-height: 60px;
   width: inherit;
   position: relative;
+  z-index: 2;
   .footer-view {
     margin-left: 40px;
     margin-right: 40px;

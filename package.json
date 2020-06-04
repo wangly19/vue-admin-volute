@@ -21,6 +21,7 @@
     "sass-resources-loader": "^2.0.3",
     "svg-sprite-loader": "^5.0.0",
     "vue": "^2.6.11",
+    "vue-amap": "^0.5.10",
     "vue-i18n": "^8.17.7",
     "vue-router": "^3.1.6",
     "vuex": "^3.1.3"
@@ -55,8 +56,7 @@
     "env": {
       "node": true
     },
-    "extends": [
-    ],
+    "extends": [],
     "parserOptions": {
       "parser": "babel-eslint"
     },

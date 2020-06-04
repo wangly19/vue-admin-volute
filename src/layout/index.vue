@@ -1,19 +1,28 @@
 <template>
   <div class="layout-container">
-    <div class="route-view">
-      <router-view></router-view>
-    </div>
+    <layout-header v-if="false"></layout-header>
+    <a-tabs v-model="$route.path" hide-add
+    size="small"
+    class="router-view" :animated="true"
+    @edit="onEdit">
+        <a-tab-pane v-for="pane in keepList" :key="pane.path" :tab="pane.meta.title">
+          <router-view></router-view>
+        </a-tab-pane>
+      </a-tabs>
     <layout-footer class="layout-footer" />
   </div>
 </template>
 
 <script>
 import LayoutFooter from './component/footer'
+import LayoutHeader from './component/header'
 import { mapGetters } from 'vuex'
 
 export default {
   data: () => ({
-    routerActive: []
+    routerActive: [],
+    activeKey: 'home',
+    panes: []
   }),
   computed: {
     ...mapGetters(['keepList', 'currentRoutes']),
@@ -40,10 +49,12 @@ export default {
     changeViewPath (key) {
       console.log(key)
       this.$router.replace({ path: key })
-    }
+    },
+    onEdit () {}
   },
   components: {
-    LayoutFooter
+    LayoutFooter,
+    LayoutHeader
   },
   created () {
     console.log(this.$router)
@@ -68,7 +79,10 @@ export default {
 </style>
 
 <style scoped>
-.router-view >>> .ant-tabs-card-content, .ant-tabs-tabpane-active  {
+.router-view >>> .ant-tabs-content, .ant-tabs-tabpane-active  {
   height: 100%;
+}
+.router-view >>> .ant-tabs-bar {
+  margin-bottom: 0;
 }
 </style>

@@ -1,4 +1,5 @@
 @import './tools.scss';
+@import './base.scss';
 
 // 描述颜色
 $primary-color: #5673FF;
@@ -21,13 +22,3 @@ $border-color: #e8e8e8;
 $font-min: 14px;
 $font-default: 16px;
 $font-large: 20px;
-
-// 圆角
-@mixin radius() {
-  border-radius: 4px;
-}
-
-@mixin viewGlobalStyle {
-  padding: 15px;
-  height: 100%;
-}
