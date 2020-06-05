@@ -14,7 +14,7 @@ export default {
   children: [
     {
       path: '/user/info',
-      name: 'userinfo',
+      name: 'UserInfo',
       meta: {
         title: '个人信息',
         icon: '',

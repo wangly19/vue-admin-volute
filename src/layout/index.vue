@@ -1,14 +1,11 @@
 <template>
   <div class="layout-container">
-    <layout-header v-if="false"></layout-header>
-    <a-tabs v-model="$route.path" hide-add
-    size="small"
-    class="router-view" :animated="true"
-    @edit="onEdit">
-        <a-tab-pane v-for="pane in keepList" :key="pane.path" :tab="pane.meta.title">
-          <router-view></router-view>
-        </a-tab-pane>
-      </a-tabs>
+    <layout-header></layout-header>
+    <div class="router-view">
+      <keep-alive :include="Array.from(keepList)">
+        <router-view></router-view>
+      </keep-alive>
+    </div>
     <layout-footer class="layout-footer" />
   </div>
 </template>
@@ -25,7 +22,7 @@ export default {
     panes: []
   }),
   computed: {
-    ...mapGetters(['keepList', 'currentRoutes']),
+    ...mapGetters(['keepList']),
     tabBar () {
       return {
         marginBottom: 0
@@ -57,7 +54,7 @@ export default {
     LayoutHeader
   },
   created () {
-    console.log(this.$router)
+    console.log([...this.keepList])
   }
 }
 </script>

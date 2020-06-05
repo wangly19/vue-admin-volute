@@ -1,5 +1,9 @@
 import router from './index'
 import Store from '@/store'
+
+// 白名单，不需要缓存和记录的页面
+const whitePath = ['/404', '/login']
+
 router.beforeEach(async (to, from, next) => {
   if (to.path === '/login') {
     next()
@@ -22,5 +26,8 @@ router.beforeEach(async (to, from, next) => {
 })
 
 router.afterEach((to, from) => {
-  Store.commit('pushKeepList', to)
+  if (!whitePath.includes(to.path)) {
+    Store.commit('pushKeepList', to.name)
+    Store.commit('changeCacheKeepMap', to)
+  }
 })

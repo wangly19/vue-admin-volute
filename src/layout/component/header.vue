@@ -1,17 +1,31 @@
 <template>
   <div class="header-container">
     <ul class="header-menu">
-      <li class="header-menu__item">
-        <a-tag color="#108ee9">
-          #108ee9
-        </a-tag>
-      </li>
+      <router-link class="header-menu__item" :to="value.path" tag="li" v-for="[label, value] in cacheKeepMap" :key="label">
+        <a-badge status="processing" />
+        <span class="tag-text">{{value.meta.title}}</span>
+        <a-icon type="close"
+        @click="closeTag"
+        class="close-btn" />
+      </router-link>
     </ul>
-    <!-- <span class="tip-user">
-      欢迎你：赵天翼
-    </span> -->
   </div>
 </template>
+
+<script>
+import { mapGetters } from 'vuex'
+export default {
+  computed: {
+    ...mapGetters(['keepList', 'cacheKeepMap'])
+  },
+  methods: {
+    closeKeepLive (e) {
+      console.log(e)
+    },
+    closeTag () {}
+  }
+}
+</script>
 
 <style lang="scss" scoped>
 $base-height: 40px;
@@ -21,6 +35,41 @@ $base-height: 40px;
   padding-left: 15px;
   padding-right: 15px;
   border-bottom: 1.1px solid $border-color;
-  @include flex($justify: space-between, $align: center);
+  display: grid;
+  grid-template-columns: 1fr 200px;
+  .trans {
+    transition: all .5s;
+  }
+  .header-menu {
+    @include flex($justify: flex-start, $align: center);
+    @extend .trans;
+    overflow: auto;
+    &__item {
+      @include flex($justify: flex-start, $align: center);
+      @include radius();
+      cursor: pointer;
+      height: 25px;
+      border: 1px solid $border-color;
+      padding: 0 10px;
+      margin-right: 10px;
+      .tag-text {
+        color: $text-color;
+        font-size: 12px;
+      }
+      .close-btn {
+        @extend .trans;
+        margin-left: 5px;
+        font-size: 10px;
+        cursor: pointer;
+        &:hover {
+          color: #F50;
+          transform: scale(1.2);
+        }
+      }
+      &:hover {
+        border: 1px solid $primary-color;
+      }
+    }
+  }
 }
 </style>

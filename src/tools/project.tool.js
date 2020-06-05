@@ -1,14 +1,20 @@
-import { message } from "ant-design-vue"
-
 /**
- * 
- * @param {String} type 消息类型 , 成功，失败，警告
- * @param {String} message 消息内容
+ * 重写Map响应式
  */
-const createMessage = (type='success', message) => {
-  // ，默认时间
-  const __baseTime = 2
-  if (type && message !== '') {
-    message[type](message, __baseTime)
+export class ObserveMap {
+  map = null
+  constructor (map) {
+    this.map = new Map(map)
+  }
+
+  set (key, value) {
+    this.map.set(key, value)
+    console.log(this.map)
+    return this.map
+  }
+
+  remove (key) {
+    this.map.remove(key)
+    return this.map
   }
 }

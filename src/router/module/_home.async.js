@@ -15,7 +15,7 @@ export default {
   children: [
     {
       path: '/dash',
-      name: 'dash',
+      name: 'DashHome',
       meta: {
         title: '首页',
         icon: '',

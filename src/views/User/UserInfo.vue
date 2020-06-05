@@ -1,11 +1,12 @@
 <template>
   <div class="userinfo-container">
+    <a-input-search placeholder="input search text" style="width: 200px" />
   </div>
 </template>
 
 <script>
 export default {
-  name: 'userinfo',
+  name: 'UserInfo',
   created () {
     console.log('userinfo')
   }

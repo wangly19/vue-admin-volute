@@ -5,7 +5,7 @@ console.log(env)
 
 // 默认名称
 const __baseOutTime = 5000
-const __baseUrl = ' http://api.wangfanghua.top:7300/mock/5ed73f13216d1377dea9bedb/service'
+const __baseUrl = 'http://api.wangfanghua.top:7300/mock/5ed73f13216d1377dea9bedb/service'
 
 // 创建axios实例
 const httpServer = Axios.create({

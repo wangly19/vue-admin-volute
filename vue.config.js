@@ -1,3 +1,5 @@
+const LoginData = require('./mock/login.json')
+
 const path = require('path')
 function resolve (dir) {
   return path.join(__dirname, dir)
@@ -29,7 +31,7 @@ module.exports = {
     port: 8400,
     proxy: {
       '/api': {
-        target: 'http://wangfanghua.com',
+        target: 'http://localhost:8400/api',
         changeOrigin: true,
         pathRewrite: {
           '^/api': ''
