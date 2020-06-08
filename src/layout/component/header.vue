@@ -1,11 +1,13 @@
 <template>
   <div class="header-container">
     <ul class="header-menu">
-      <router-link class="header-menu__item" :to="value.path" tag="li" v-for="[label, value] in cacheKeepMap" :key="label">
-        <a-badge status="processing" />
+      <router-link class="header-menu__item" :to="value.path"
+        :class="$route.name === label && 'is-active'"
+        tag="li" v-for="[label, value] in cacheKeepMap" :key="label">
+        <a-badge :status="$route.name === label ? 'processing' : 'default'" />
         <span class="tag-text">{{value.meta.title}}</span>
         <a-icon type="close"
-        @click="closeTag"
+        @click.stop="onCloseTag(label)"
         class="close-btn" />
       </router-link>
     </ul>
@@ -16,13 +18,17 @@
 import { mapGetters } from 'vuex'
 export default {
   computed: {
-    ...mapGetters(['keepList', 'cacheKeepMap'])
+    ...mapGetters(['cacheKeepMap'])
   },
   methods: {
     closeKeepLive (e) {
       console.log(e)
     },
-    closeTag () {}
+    onCloseTag (key) {
+      console.log(this.keepList, key)
+      this.$store.commit('clearKeepStack', key)
+      console.log(this.keepList, this.cacheKeepMap)
+    }
   }
 }
 </script>
@@ -44,6 +50,9 @@ $base-height: 40px;
     @include flex($justify: flex-start, $align: center);
     @extend .trans;
     overflow: auto;
+    .is-active {
+      border: 1px solid $primary-color;
+    }
     &__item {
       @include flex($justify: flex-start, $align: center);
       @include radius();
@@ -52,6 +61,7 @@ $base-height: 40px;
       border: 1px solid $border-color;
       padding: 0 10px;
       margin-right: 10px;
+      @extend .trans;
       .tag-text {
         color: $text-color;
         font-size: 12px;

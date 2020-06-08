@@ -47,7 +47,7 @@ export default {
   position: relative;
   .extend-move {
     @include radius();
-    height: calc(100% - 145px);
+    height: calc(100% - 105px);
     background: rgba(255, 255, 255, 0.92);
     z-index: 1;
     transition: box-shadow .5s;

@@ -27,7 +27,6 @@ router.beforeEach(async (to, from, next) => {
 
 router.afterEach((to, from) => {
   if (!whitePath.includes(to.path)) {
-    Store.commit('pushKeepList', to.name)
     Store.commit('changeCacheKeepMap', to)
   }
 })

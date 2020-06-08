@@ -1,11 +1,14 @@
 <template>
   <div class="layout-container">
+    <!-- 头部 -->
     <layout-header></layout-header>
+    <!-- 二级路由 -->
     <div class="router-view">
-      <keep-alive :include="Array.from(keepList)">
+      <keep-alive :include="filterIncludeComponentName">
         <router-view></router-view>
       </keep-alive>
     </div>
+    <!-- 导航条 -->
     <layout-footer class="layout-footer" />
   </div>
 </template>
@@ -22,18 +25,21 @@ export default {
     panes: []
   }),
   computed: {
-    ...mapGetters(['keepList']),
+    ...mapGetters(['cacheKeepMap']),
     tabBar () {
       return {
         marginBottom: 0
       }
     },
-    filterRouter () {
-      const path = []
-      this.keepList.forEach(route => {
-        path.push(route.item.path)
-      })
-      return path
+    /**
+     * 从缓存路由中获取组件名称
+     */
+    filterIncludeComponentName () {
+      const componentNames = []
+      for (const key of this.cacheKeepMap.keys()) {
+        componentNames.push(key)
+      }
+      return componentNames
     }
   },
   methods: {
@@ -52,9 +58,6 @@ export default {
   components: {
     LayoutFooter,
     LayoutHeader
-  },
-  created () {
-    console.log([...this.keepList])
   }
 }
 </script>

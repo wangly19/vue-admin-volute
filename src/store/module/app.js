@@ -3,11 +3,9 @@
  * - isZoom 收缩
  * - keepList 缓存页面
  */
-import { ObserveMap } from '@/tools/project.tool'
 
 const state = {
   isZoom: false,
-  keepList: new Set(),
   cacheKeepMap: new Map()
 }
 
@@ -20,17 +18,22 @@ const mutations = {
   setZoom (state, bool) {
     state.isZoom = bool
   },
-  pushKeepList (state, componentName) {
-    state.keepList.add(componentName)
-  },
+  /**
+   * 添加缓存组件信息
+   * @param {RouteConfig} route
+   */
   changeCacheKeepMap (state, route) {
-    const newMap = new ObserveMap(this.cacheKeepMap).set(route.name, route)
-    this.cacheKeepMap = new Map(newMap)
-  },
-  clearKeepStack (state, key) {
-    state.keepList.delete(key)
     const swapMap = new Map(state.cacheKeepMap)
-    swapMap.remove(key)
+    swapMap.set(route.name, route)
+    state.cacheKeepMap = swapMap
+  },
+  /**
+   * 清除缓存组件
+   * @param {T<String>} key Map的键名 
+   */
+  clearKeepStack (state, key) {
+    const swapMap = new Map(state.cacheKeepMap)
+    swapMap.delete(key)
     state.cacheKeepMap = new Map(swapMap)
   }
 }

@@ -1,5 +1,3 @@
-const LoginData = require('./mock/login.json')
-
 const path = require('path')
 function resolve (dir) {
   return path.join(__dirname, dir)
